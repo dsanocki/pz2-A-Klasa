@@ -1,0 +1,90 @@
+@model IEnumerable<Aklasa.Models.Druzyna>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NazwaKlubu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscMeczy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscZwyciestw)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscRemisow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscPorazek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BramkiZdobyte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BramkiStracone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BilansBramkowy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Punkty)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazwaKlubu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscMeczy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscZwyciestw)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscRemisow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscPorazek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BramkiZdobyte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BramkiStracone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BilansBramkowy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Punkty)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.IdDruzyny">Details</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.IdDruzyny">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdDruzyny">Delete</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,24 @@
+@model Aklasa.Models.LoginViewModel
+
+<h2>Logowanie</h2>
+
+<form asp-action="Login" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Login"></label>
+        <input asp-for="Login" class="form-control" />
+        <span asp-validation-for="Login"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Haslo"></label>
+        <input asp-for="Haslo" class="form-control" />
+        <span asp-validation-for="Haslo"></span>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Zaloguj
+    </button>
+
+</form>

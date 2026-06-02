@@ -1,0 +1,64 @@
+@model IEnumerable<Aklasa.Models.Zawodnik>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Imie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwisko)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscBramek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IloscAsyst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Druzyna)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscBramek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscAsyst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Druzyna.NazwaKlubu)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.IdZawodnika">Details</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.IdZawodnika">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdZawodnika">Delete</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
