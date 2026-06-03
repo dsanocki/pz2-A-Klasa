@@ -18,5 +18,6 @@ namespace Aklasa.Models
         [NotMapped]
         [Display(Name = "Hasło")]
         public string? Haslo { get; set; }
+        
     }
 }

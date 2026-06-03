@@ -66,6 +66,27 @@ namespace AKlasa.Controllers
         {
             if (ModelState.IsValid)
             {
+                var zawodnik = await _context.Zawodnik
+                    .FirstOrDefaultAsync(z => z.IdZawodnika == transfer.ZawodnikId);
+
+                if (zawodnik == null)
+                    return NotFound();
+                if (zawodnik.DruzynaId != transfer.DruzynaOdId)
+                {
+                    ModelState.AddModelError("", "Zawodnik nie jest w tej drużynie źródłowej.");
+                }
+                if (transfer.DruzynaOdId == transfer.DruzynaDoId)
+                {
+                    ModelState.AddModelError("", "Drużyna źródłowa musi być inna niż drużyna docelowa");
+                }
+                if (!ModelState.IsValid)
+                {
+                    ViewData["DruzynaDoId"] = new SelectList(_context.Druzyna, "IdDruzyny", "NazwaKlubu", transfer.DruzynaDoId);
+                    ViewData["DruzynaOdId"] = new SelectList(_context.Druzyna, "IdDruzyny", "NazwaKlubu", transfer.DruzynaOdId);
+                    ViewData["ZawodnikId"] = new SelectList(_context.Zawodnik, "IdZawodnika", "Nazwisko", transfer.ZawodnikId);
+                    return View(transfer);
+                }
+                zawodnik.DruzynaId = transfer.DruzynaDoId;
                 _context.Add(transfer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

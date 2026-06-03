@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Transfery</h1>
 
 @if (User.Identity.IsAuthenticated)
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">Dodaj transfer</a>
     </p>
 }
 <table class="table">
@@ -46,11 +46,11 @@
                 @Html.DisplayFor(modelItem => item.DataTransferu)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.IdTransferu">Details</a>
+                <a asp-action="Details" asp-route-id="@item.IdTransferu">Szczegóły</a>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-action="Edit" asp-route-id="@item.IdTransferu">Edit</a> 
-                    <a asp-action="Delete" asp-route-id="@item.IdTransferu">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdTransferu">Edytuj</a> 
+                    <a asp-action="Delete" asp-route-id="@item.IdTransferu">Usuń</a>
                 }
             </td>
         </tr>

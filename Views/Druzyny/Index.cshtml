@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Drużyny</h1>
 
 @if (User.Identity.IsAuthenticated)
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create">Dodaj drużynę</a>
     </p>
 }
 
@@ -77,11 +77,11 @@
                 @Html.DisplayFor(modelItem => item.Punkty)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.IdDruzyny">Details</a>
+                <a asp-action="Details" asp-route-id="@item.IdDruzyny">Szczegóły</a>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a asp-action="Edit" asp-route-id="@item.IdDruzyny">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.IdDruzyny">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdDruzyny">Edytuj</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdDruzyny">Usuń</a>
                 }
             </td>
         </tr>

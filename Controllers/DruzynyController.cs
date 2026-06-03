@@ -40,6 +40,7 @@ namespace AKlasa.Controllers
             }
 
             var druzyna = await _context.Druzyna
+                .Include(m => m.Zawodnicy)
                 .FirstOrDefaultAsync(m => m.IdDruzyny == id);
             if (druzyna == null)
             {

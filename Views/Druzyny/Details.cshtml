@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Szczegóły</h1>
 
 <div>
-    <h4>Druzyna</h4>
+    <h4>Drużyna</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -69,7 +69,39 @@
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <a asp-action="Edit" asp-route-id="@Model?.IdDruzyny">Edit</a>
+        <a asp-action="Edit" asp-route-id="@Model?.IdDruzyny">Edytuj</a>
     }
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Wróć do listy</a>
 </div>
+<hr />
+
+<h4>Zawodnicy w tej drużynie</h4>
+
+@if (Model.Zawodnicy != null && Model.Zawodnicy.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Bramki</th>
+                <th>Asysty</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var z in Model.Zawodnicy)
+        {
+            <tr>
+                <td>@z.Imie</td>
+                <td>@z.Nazwisko</td>
+                <td>@z.IloscBramek</td>
+                <td>@z.IloscAsyst</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Brak zawodników w tej drużynie.</p>
+}
